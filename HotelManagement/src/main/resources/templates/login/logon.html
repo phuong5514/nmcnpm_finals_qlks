@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" th:href="@{/assets/css/login.css}">
+</head>
+
+<body>
+<div class="login-container" >
+    <div class="login-box">
+
+        <div class="icon">
+            <img th:src="@{/assets/img/bell.png}" alt="Login Icon">
+        </div>
+
+        <h2>Login</h2>
+
+        <form id="loginForm" method="post" th:action="@{/logon}">
+            <div class="input-group"> <!-- Nhập username -->
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username">
+            </div>
+
+            <div class="input-group"><!-- Nhập Password -->
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password">
+            </div>
+            <button type="submit" class="btn">Login</button>
+        </form>
+        <!-- Thông báo lỗi đăng nhập (Thymeleaf xử lý) -->
+        <div th:if="${param.error}" class="error-message">
+            <p>Invalid username or password. Please try again.</p>
+        </div>
+        <script th:src="@{assets/js/login.js}"></script>
+    </div>
+</div>
+</body>
+
+</html>

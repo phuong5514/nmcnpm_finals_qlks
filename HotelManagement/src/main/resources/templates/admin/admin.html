@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security6">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin - User Management</title>
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}" />
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>ADMIN</h1>
+        <div class="user-info">
+            <img th:src="@{assets/img/user-icon.png}" alt="User" class="user-avatar" />
+            <span>Nguyễn Văn A</span>
+        </div>
+    </header>
+
+    <div class="actions">
+        <button id="addUserBtn" class="btn-add">+ Add</button>
+        <div class="search">
+            <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Enter ID or Username"
+            />
+            <button id="searchBtn" class="btn-search">Search</button>
+        </div>
+    </div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Password</th>
+            <th>AccountType</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody id="userList">
+        <!-- User rows will be populated by JS -->
+        </tbody>
+    </table>
+</div>
+
+<div id="userModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span id="modalTitle">Add User</span>
+            <span id="closeModal" class="close">&times;</span>
+        </div>
+        <div class="modal-body">
+            <form id="userForm">
+                <label for="username">Username:</label>
+                <input
+                        type="text"
+                        id="username"
+                        placeholder="Enter username"
+                        required
+                />
+
+                <label for="password">Password:</label>
+                <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter password"
+                        required
+                />
+
+                <label for="accountType">Account Type:</label>
+                <select id="accountType" required>
+                    <option value="Admin">Admin</option>
+                    <option value="Hotel Management">Hotel Management</option>
+                    <option value="Employee">Employee</option>
+                </select>
+
+                <button type="submit" class="save-btn">SAVE</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/assets/js/script.js}"></script>
+</body>
+</html>
