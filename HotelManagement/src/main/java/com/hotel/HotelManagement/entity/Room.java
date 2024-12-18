@@ -21,6 +21,16 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int roomId;
 
+    @Column(name = "Status", nullable = false)
+    @Enumerated(EnumType.STRING)
+//    @GeneratedValue()
+    private Status status = Status.VACANT;
+
+    public enum Status {
+        VACANT,
+        OCCUPIED
+    }
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false, targetEntity = RoomType.class)
     @JoinColumn(name = "RoomTypeName", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)

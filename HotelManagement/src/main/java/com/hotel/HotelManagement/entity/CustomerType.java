@@ -21,7 +21,7 @@ public class CustomerType {
     @Column(name = "CustomerTypeID", length = 3, nullable = false)
     private String customerTypeID;
 
-    @Column(name = "CustomerTypeName", length = 20, nullable = true)
+    @Column(name = "CustomerTypeName", length = 20, nullable = false, unique = true)
     private String customerTypeName;
 
     @Column(name = "FeeModifier", precision = 2, nullable = false)

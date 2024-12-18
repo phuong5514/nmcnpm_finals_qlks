@@ -33,4 +33,13 @@ public class RentalVoucher {
 
     @Column(name = "StartDate", nullable = false)
     private Date startDate;
+
+    @Column(name = "Status", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Status status = Status.PENDING;
+
+    public enum Status {
+        PENDING,
+        PAID
+    }
 }
