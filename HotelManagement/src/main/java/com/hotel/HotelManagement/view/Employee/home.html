@@ -14,70 +14,71 @@
         <a href="../../Login/index.html">User(Employee)</a>
     </div>
 
-<div class="below-header">
-    <!--Side Bar Menu-->
-    <div class="side-bar-container">
-        <p>Menu</p>
-        <a href="home.html" class="menu-item"> <span class="menu-icon">&#8962;</span> Home</a>
-        <a href="list.html" class="menu-item"> <span class="menu-icon"> <i class="fas fa-list"></i> </span> List</a>
-	<a href="bill.html" class="menu-item"> <span class="menu-icon"> <i class="fas fa-file-invoice"></i> </i> </span> Bill</a>
-        <a href="settings.html" class="menu-item setting-btn"> <span class="menu-icon">&#9881;</span> Setting</a>
-    </div>
-    <!--Information: Detail, Vacancy, Notice-->
-    <div class="information-container">
-        <!--Detail information: Room, Staff, Visitor-->
-        <div class="detail">
-            <div class="detail-item">
-                <p>Room</p>
-                <p>Room occupied: </p><!--Lấy dữ liệu từ DB-->
-                <p>Available: </p><!--Lấy dữ liệu từ DB-->
-                <p>Reserved: </p><!--Lấy dữ liệu từ DB-->
-            </div>
-            <div class="detail-item">
-                <p>Staff</p>
-                <p>Checked in: </p><!--Lấy dữ liệu từ DB-->
-                <p>Absent: </p><!--Lấy dữ liệu từ DB-->
-            </div>
-            <div class="detail-item">
-                <p>Visitor</p>
-                <p>Total: </p><!--Lấy dữ liệu từ DB-->
-                <p>Current: </p><!--Lấy dữ liệu từ DB-->
-            </div>
-            <div class="detail-item"><p>Time: <span id="current-time"></span></p></div>
+    <div class="below-header">
+        <!--Side Bar Menu-->
+        <div class="side-bar-container">
+            <p>Menu</p>
+            <a href="home.html" class="menu-item"> <span class="menu-icon">&#8962;</span> Home</a>
+            <a href="list.html" class="menu-item"> <span class="menu-icon"> <i class="fas fa-list"></i> </span> List</a>
+        <a href="bill.html" class="menu-item"> <span class="menu-icon"> <i class="fas fa-file-invoice"></i> </i> </span> Bill</a>
+            <a href="settings.html" class="menu-item setting-btn"> <span class="menu-icon">&#9881;</span> Setting</a>
         </div>
-        <!--Hàm lấy thời gian-->
-        <script>
-            function updateTime() {
-                const now = new Date();
-                const timeString = now.toLocaleTimeString();
-                const dateString = now.toLocaleDateString();
-                document.getElementById("current-time").textContent = `${dateString} - ${timeString}`;
-            }
-    
-            setInterval(updateTime, 1000);
-            updateTime();
-        </script>
-        <!--Vacancy and Notice-->
-        <div class="vacancies-and-notice">
-            <div class="room-status-list">
-                <p>Vacancies</p>
-                <ul>
-                    <!--Lấy dữ liệu từ DB-->
-                </ul>
-                <p>Reserved</p>
-                <ul>
-                    <!--Lấy dữ liệu từ DB-->
-                </ul>
-                <p>Occupied</p>
-                <ul>
-                    <!--Lấy dữ liệu từ DB-->
-                </ul>
+        <!--Information: Detail, Vacancy, Notice-->
+        <div class="information-container">
+            <!--Detail information: Room, Staff, Visitor-->
+            <div class="detail">
+                <div class="detail-item">
+                    <p>Room</p>
+                    <p>Room occupied: </p><!--Lấy dữ liệu từ DB-->
+                    <p>Available: </p><!--Lấy dữ liệu từ DB-->
+                    <p>Reserved: </p><!--Lấy dữ liệu từ DB-->
+                </div>
+                <div class="detail-item">
+                    <p>Staff</p>
+                    <p>Checked in: </p><!--Lấy dữ liệu từ DB-->
+                    <p>Absent: </p><!--Lấy dữ liệu từ DB-->
+                </div>
+                <div class="detail-item">
+                    <p>Visitor</p>
+                    <p>Total: </p><!--Lấy dữ liệu từ DB-->
+                    <p>Current: </p><!--Lấy dữ liệu từ DB-->
+                </div>
+                <div class="detail-item"><p>Time: <span id="current-time"></span></p></div>
             </div>
-            <div class="notice">
-                <p>Notice</p>
-                <ul>
-                    <!--Lấy dữ liệu từ DB-->
-                </ul>
+            <!--Hàm lấy thời gian-->
+            <script>
+                function updateTime() {
+                    const now = new Date();
+                    const timeString = now.toLocaleTimeString();
+                    const dateString = now.toLocaleDateString();
+                    document.getElementById("current-time").textContent = `${dateString} - ${timeString}`;
+                }
+
+                setInterval(updateTime, 1000);
+                updateTime();
+            </script>
+            <!--Vacancy and Notice-->
+            <div class="vacancies-and-notice">
+                <div class="room-status-list">
+                    <p>Vacancies</p>
+                    <ul>
+                        <!--Lấy dữ liệu từ DB-->
+                    </ul>
+                    <p>Reserved</p>
+                    <ul>
+                        <!--Lấy dữ liệu từ DB-->
+                    </ul>
+                    <p>Occupied</p>
+                    <ul>
+                        <!--Lấy dữ liệu từ DB-->
+                    </ul>
+                </div>
+                <div class="notice">
+                    <p>Notice</p>
+                    <ul>
+                        <!--Lấy dữ liệu từ DB-->
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
