@@ -31,8 +31,6 @@
                 throw new UsernameNotFoundException("User with username: " + username + " was not found.");
             }
 
-
-
             System.out.println("User found: " + user.getUsername());
 
             Collection<GrantedAuthority> authorities = new HashSet<>();
