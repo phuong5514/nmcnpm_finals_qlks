@@ -1,0 +1,210 @@
+/* Container của Side-Bar */
+.side-bar-container {
+    margin-top: 10px; /* Cách Header 10px */
+    width: 200px; /* Chiều rộng của sidebar */
+    height: 100vh; /* Chiều cao toàn màn hình */
+    background-color: #007b83; /* Màu nền */
+    padding-top: 20px; /* Khoảng cách trên cùng */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Hiệu ứng đổ bóng */
+    color: white; /* Màu chữ */
+    display: flex;
+    flex-direction: column; /* Xếp các mục theo chiều dọc */
+    height:90vh;
+    border-radius: 20px; /* Gọt tròn 4 góc container */
+    text-align: center;
+}
+
+/* Tiêu đề Menu */
+.side-bar-container p {
+    margin: 0 20px 20px; /* Khoảng cách trái và dưới */
+    font-size: 48px; /* Kích thước chữ */
+    font-weight: bold; /* Chữ in đậm */
+}
+
+/* Mục Menu */
+.side-bar-container a {
+    display: flex; /* Dùng flex để sắp xếp icon và text theo hàng ngang */
+    align-items: center; /* Căn giữa icon và text theo chiều dọc */
+    padding: 10px 20px; /* Khoảng cách trong mục menu */
+    color: white; /* Màu chữ */
+    text-decoration: none; /* Loại bỏ gạch chân */
+    font-size: 24px; /* Kích thước chữ */
+    margin-bottom: 10px; /* Khoảng cách giữa các mục menu */
+    border-radius: 4px; /* Bo góc */
+    transition: background-color 0.3s ease; /* Hiệu ứng mượt khi hover */
+    background-color: #00acc1;
+}
+
+/* Icon trong Sidebar */
+.menu-icon {
+    font-size: 18px; /* Kích thước của icon */
+    margin-right: 10px; /* Khoảng cách giữa icon và text */
+}
+
+/* Hiệu ứng hover */
+.side-bar-container a:hover {
+    background-color: #00838f; /* Đổi màu nền khi hover */
+}
+
+/* Mục menu đang được chọn (active) */
+.side-bar-container a.active {
+    background-color: #005662; /* Màu nền nổi bật */
+    font-weight: bold; /* Chữ in đậm */
+}
+
+/* Nút Setting */
+.setting-btn {
+    margin-top: 250px; /* Đẩy nút xuống cuối container */
+    background-color: #007b83; /* Màu nền giống sidebar */
+    text-align: center; /* Căn giữa nội dung */
+    border-top: 1px solid #005662; /* Đường viền ngăn cách với menu trên */
+    transition: background-color 0.3s; /* Hiệu ứng khi hover */
+}
+
+/* Icon Setting */
+.setting-btn .menu-icon {
+    font-size: 18px; /* Kích thước icon */
+    margin-right: 10px; /* Khoảng cách giữa icon và chữ */
+}
+
+/* Hiệu ứng hover */
+.setting-btn:hover {
+    background-color: #00838f; /* Màu nền khi hover */
+}
+
+/* Văn bản trong Setting */
+.setting-btn span {
+    font-size: 16px; /* Kích thước chữ */
+}
+
+.information-container {
+    width: 90%;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #007b83; /* Background color */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    margin-left: 10px;
+    height: 750px;
+}
+
+.detail {
+    display: flex;
+    justify-content: space-between; /* Space between each detail-item */
+    width: 100%; /* Occupy full width of parent container */
+    padding: 10px;
+}
+
+.detail-item {
+    flex: 1; /* Distribute equal width to each detail-item */
+    text-align: left; /* Align text to the left */
+    padding: 15px; /* Padding inside each detail-item */
+    color: white; /* Text color */
+    font-size: 16px; /* Font size */
+    background-color: #005662; /* Background for detail-item */
+    border-radius: 10px; /* Rounded corners */
+    margin: 0 10px; /* Space between detail items */
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: center; /* Align content vertically */
+    align-items: flex-start; /* Align text to the start (left) */
+}
+
+.vacancies-and-notice {
+    display: flex;
+    width: 100%;
+    gap: 20px; /* Khoảng cách giữa hai khối */
+    margin-top: 20px;
+    height: 100vh;
+}
+
+.room-status-list {
+    width: 50%;; /* Chia đều không gian giữa hai khối */
+    padding: 20px; /* Khoảng cách bên trong */
+    background-color: #005662; /* Màu nền */
+    border-radius: 20px; /* Bo góc */
+    color: white; /* Màu chữ */
+    font-size: 16px; /* Kích thước chữ */
+    overflow-y: auto; /* Hiển thị thanh cuộn nếu nội dung quá nhiều */
+    max-height: 400px; /* Đặt chiều cao tối đa */
+    box-sizing: border-box; /* Bao gồm padding và border */
+    height: 100%;
+    overflow-y: auto; /* Tự động thêm thanh cuộn dọc nếu nội dung vượt quá */
+}
+
+.notice{
+    padding: 20px; /* Khoảng cách bên trong */
+    background-color: #005662; /* Màu nền */
+    border-radius: 20px; /* Bo góc */
+    color: white; /* Màu chữ */
+    overflow-y: auto; /* Hiển thị thanh cuộn nếu nội dung quá nhiều */
+    max-height: 400px; /* Đặt chiều cao tối đa */
+    box-sizing: border-box; /* Bao gồm padding và border */
+    width: 50%;
+}
+
+
+.room-status-list p, .notice p {
+    font-size: 24px; /* Kích thước chữ tiêu đề */
+    font-weight: bold; /* In đậm */
+    margin-bottom: 10px; /* Khoảng cách dưới */
+}
+
+.room-status-list ul, .notice ul {
+    list-style: none; /* Xóa dấu chấm đầu dòng */
+    padding: 0; /* Xóa khoảng cách mặc định */
+}
+
+.room-status-list ul li, .notice ul li {
+    margin-bottom: 10px; /* Khoảng cách giữa các dòng */
+    background-color: #007b83; /* Màu nền item */
+    padding: 10px; /* Khoảng cách bên trong item */
+    border-radius: 10px; /* Bo góc item */
+}
+
+
+/* Container của Header */
+.header-container {
+    display: flex; /* Sử dụng Flexbox để sắp xếp các phần tử ngang */
+    justify-content: space-between; /* Căn hai phần tử ra hai phía */
+    align-items: center; /* Căn giữa theo trục dọc */
+    background-color: #007b83; /* Màu nền */
+    padding: 10px 20px; /* Khoảng cách bên trong */
+    color: white; /* Màu chữ */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Hiệu ứng đổ bóng */
+    border-radius: 20px; /* Gọt tròn 4 góc container */
+    border-bottom: 3px;
+}
+
+/* Tiêu đề của Header */
+#header-title {
+    font-size: 48px; /* Kích thước chữ lớn */
+    font-weight: bold; /* Chữ in đậm */
+    margin: 0; /* Xóa khoảng cách mặc định */
+}
+
+/* Nút User (Owner) */
+.header-container a {
+    background-color: #00acc1; /* Màu nền */
+    color: white; /* Màu chữ */
+    text-decoration: none; /* Loại bỏ gạch chân */
+    padding: 8px 15px; /* Khoảng cách bên trong */
+    font-size: 48px; /* Kích thước chữ */
+    border-radius: 4px; /* Bo góc */
+    transition: background-color 0.3s ease; /* Hiệu ứng mượt khi hover */
+}
+
+/* Hiệu ứng hover cho nút User (Owner) */
+.header-container a:hover {
+    background-color: #00838f; /* Đổi màu nền khi hover */
+}
+
+html, body {
+    height: 100vh; /* Chiều cao bằng 100% khung nhìn trình duyệt */
+    overflow-y: hidden; /* Không cho phép cuộn */
+}
+
+.below-header{
+    display:flex;
+}
