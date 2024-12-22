@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insight</title>
+    <link rel="stylesheet" href="css/header.css"/>
+    <link rel="stylesheet" href="css/side-bar-menu.css"/>
+    <link rel="stylesheet" href="css/below-header.css"/>
+    <link rel="stylesheet" href="css/information-container.css"/>
+
+</head>
+<body>
+    <!--Header-->
+    <div class="header-container">
+        <p id="header-title">Quản lý khách sạn.</p>
+        <a href="../../Login/index.html">User(Owner)</a>
+    </div>
+
+<div class="below-header">
+    <!--Side Bar Menu-->
+    <div class="side-bar-container">
+        <p>Menu</p>
+        <a href=../Home/main.html class="menu-item"> <span class="menu-icon">&#8962;</span> Home</a>
+        <a href="../Rule_Set/main.html" class="menu-item"> <span class="menu-icon">&#9733;</span> Rule set</a>
+        <a href=# class="menu-item"> <span class="menu-icon">&#128065;</span> Insight</a>
+    </div>
+
+    <div class="information-container">
+        <div class =" detail">
+            <form id="monthly-form">
+                <label for="month">Select Month:</label>
+                <input type="month" id="month" name="month" required>
+                <button type="submit">Submit</button>
+              </form>
+            <!--Doanh thu, tổng số khách lấy từ db-->
+            <p>Tổng doanh thu: 43000000</p>
+            <p>Tổng số khách: 44</p>
+        </div>
+
+        <div class="room-list-and-pie-chart">
+            <div class="room-list">
+                <ul class="list" id="room-revenue">
+                    <!--Các thông tin về tiền phòng lấy từ db-->
+                    <li>Room: A</li>
+                </ul>
+            </div>
+
+            <div class="pie-chart-container">
+                <p>Chart</p>
+                <!--Vẽ ở đây-->
+            </div>
+        </div>
+    </div>
+</body>
+</html>

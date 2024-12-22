@@ -21,7 +21,7 @@ public class UserOwnerController {
 
     @PostMapping("/create/room-type")
     public RoomType createRoomType(@RequestBody RoomType roomType) {
-//        return roomTypeService.;
+        return roomTypeService.save(roomType);
     }
 
     @PostMapping("/delete/room-type")
