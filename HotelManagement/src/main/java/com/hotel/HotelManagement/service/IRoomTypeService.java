@@ -9,6 +9,7 @@ import java.util.List;
 public interface IRoomTypeService {
     List<RoomType> getAllRoomTypes();
     List<RoomType> findRoomTypesByName(String roomTypeName);
+    RoomType findRoomTypeByName(String roomTypeName);
 
     RoomType save(RoomType roomType);
     void delete(RoomType roomType);

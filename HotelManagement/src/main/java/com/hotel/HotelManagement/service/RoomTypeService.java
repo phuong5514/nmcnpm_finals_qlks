@@ -23,6 +23,11 @@ public class RoomTypeService implements IRoomTypeService {
     }
 
     @Override
+    public RoomType findRoomTypeByName(String roomTypeName) {
+        return roomTypeRepository.getReferenceById(roomTypeName);
+    }
+
+    @Override
     public RoomType save(RoomType roomType) {
         return roomTypeRepository.save(roomType);
     }

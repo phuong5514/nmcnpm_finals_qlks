@@ -23,8 +23,8 @@ public class CustomerTypeService implements ICustomerTypeService {
     }
 
     @Override
-    public CustomerType findCustomerTypeByName(String name) {
-        return customerTypeRepository.findByCustomerTypeNameContaining(name);
+    public List<CustomerType> findCustomerTypesByName(String name) {
+        return customerTypeRepository.findCustomerTypesByCustomerTypeNameContaining(name);
     }
 
     @Override

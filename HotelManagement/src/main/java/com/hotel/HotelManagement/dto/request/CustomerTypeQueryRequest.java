@@ -1,5 +1,6 @@
 package com.hotel.HotelManagement.dto.request;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,7 +10,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class RoleModificationRequest {
-    private String roleName;
-    private String roleId;
+public class CustomerTypeQueryRequest {
+    private String customerTypeId;
+    private String customerTypeName;
 }

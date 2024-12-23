@@ -10,5 +10,5 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RoleCreationRequest {
-    String roleName;
+    private String roleName;
 }
