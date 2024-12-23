@@ -11,7 +11,7 @@ public interface IRoomService {
     List<Room> getRooms();
     List<Room> getRoomsByStatus(Room.Status status);
     List<Room> getRoomsByRoomType(RoomType roomType);
-    List<Room> getRoomsById(Integer id);
+    Room getRoomById(Integer id);
 
     Room getRoom(Integer id);
     Room save(Room room);

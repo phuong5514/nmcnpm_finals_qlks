@@ -40,6 +40,11 @@ public class RoleService implements IRoleService {
         roleRepository.delete(role);
     }
 
+    @Override
+    public void delete(String id) {
+        roleRepository.deleteById(id);
+    }
+
     public Role createRequest(RoleCreationRequest request) {
         String roleName = request.getRoleName();
         if (roleRepository.findByRoleName(roleName).isPresent()) {

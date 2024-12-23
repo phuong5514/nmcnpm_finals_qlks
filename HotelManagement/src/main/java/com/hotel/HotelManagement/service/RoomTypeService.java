@@ -23,6 +23,11 @@ public class RoomTypeService implements IRoomTypeService {
     }
 
     @Override
+    public RoomType findRoomTypeByName(String roomTypeName) {
+        return roomTypeRepository.getReferenceById(roomTypeName);
+    }
+
+    @Override
     public RoomType save(RoomType roomType) {
         return roomTypeRepository.save(roomType);
     }
@@ -30,5 +35,10 @@ public class RoomTypeService implements IRoomTypeService {
     @Override
     public void delete(RoomType roomType) {
         roomTypeRepository.delete(roomType);
+    }
+
+    @Override
+    public void delete(String roomTypeName) {
+        roomTypeRepository.deleteById(roomTypeName);
     }
 }

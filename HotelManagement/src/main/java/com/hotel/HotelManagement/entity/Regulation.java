@@ -5,9 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.Check;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 
 @Entity
@@ -22,10 +19,10 @@ public class Regulation {
     private String lock;
 
     @Column(name = "MaxGuestCount", nullable = false)
-    private int maxGuestCount;
+    private int defaultMaxGuestCount;
 
     @Column(name = "OverGuestRate", precision = 2, nullable = false)
-    private double overGuestRate;
+    private double defaultOverGuestRate;
 
 
 

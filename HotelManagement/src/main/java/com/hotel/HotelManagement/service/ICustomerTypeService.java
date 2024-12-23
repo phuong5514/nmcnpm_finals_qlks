@@ -10,8 +10,9 @@ public interface ICustomerTypeService {
     List<CustomerType> getAllCustomerTypes();
     CustomerType findCustomerTypeById(String id);
 
-    CustomerType findCustomerTypeByName(String name);
+    List<CustomerType> findCustomerTypesByName(String name);
 
     CustomerType save(CustomerType customerType);
     void delete(CustomerType customerType);
+    void delete(String id);
 }

@@ -2,13 +2,11 @@ package com.hotel.HotelManagement.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@AllArgsConstructor
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
-public class RoleDeletionRequest {
-    private String roleId;
+public class RoomDeletionRequest {
+    private int roomId;
 }

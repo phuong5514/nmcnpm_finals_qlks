@@ -5,11 +5,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class RoleModificationRequest {
-    private String roleName;
-    private String roleId;
+@Setter
+@Getter
+public class CustomerTypeCreationOrUpdateRequest {
+    private String customerTypeID;
+    private String customerTypeName;
+    private double feeModifier;
 }

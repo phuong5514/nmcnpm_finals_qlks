@@ -9,7 +9,6 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class RoleModificationRequest {
-    private String roleName;
-    private String roleId;
+public class RoomTypeDeletionRequest {
+    private String roomTypeName;
 }

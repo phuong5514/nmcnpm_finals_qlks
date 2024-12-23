@@ -26,4 +26,10 @@ public class RentalVoucherService implements IRentalVoucherService {
     public RentalVoucher save(RentalVoucher rentalVoucher) {
         return rentalVoucherRepository.save(rentalVoucher);
     }
+
+    @Override
+    public void delete(RentalVoucher rentalVoucher) { rentalVoucherRepository.delete(rentalVoucher); }
+
+    @Override
+    public void delete(int id) { rentalVoucherRepository.deleteById(id); }
 }

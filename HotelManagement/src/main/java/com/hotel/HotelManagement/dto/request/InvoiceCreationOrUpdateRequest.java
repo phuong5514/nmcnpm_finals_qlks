@@ -5,11 +5,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
-@Setter
+import java.sql.Date;
+
 @AllArgsConstructor
 @NoArgsConstructor
-public class RoleModificationRequest {
-    private String roleName;
-    private String roleId;
+@Setter
+@Getter
+public class InvoiceCreationOrUpdateRequest {
+    private int InvoiceId;
+    private int CustomerId;
+    private Date IssuedDate;
+    private int TotalAmount;
 }

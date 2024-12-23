@@ -13,6 +13,12 @@ public class CustomerService implements ICustomerService {
     @Autowired
     private CustomerRepository customerRepository;
 
+
+    @Override
+    public List<Customer> getCustomers() {
+        return customerRepository.findAll();
+    }
+
     @Override
     public Customer findCustomerById(int id) {
         return customerRepository.findById(id).orElse(null);
@@ -36,5 +42,10 @@ public class CustomerService implements ICustomerService {
     @Override
     public void delete(Customer customer) {
         customerRepository.delete(customer);
+    }
+
+    @Override
+    public void delete(int id) {
+        customerRepository.deleteById(id);
     }
 }

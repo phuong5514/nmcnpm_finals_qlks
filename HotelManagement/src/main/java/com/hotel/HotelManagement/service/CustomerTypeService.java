@@ -23,8 +23,8 @@ public class CustomerTypeService implements ICustomerTypeService {
     }
 
     @Override
-    public CustomerType findCustomerTypeByName(String name) {
-        return customerTypeRepository.findByCustomerTypeNameContaining(name);
+    public List<CustomerType> findCustomerTypesByName(String name) {
+        return customerTypeRepository.findCustomerTypesByCustomerTypeNameContaining(name);
     }
 
     @Override
@@ -35,5 +35,10 @@ public class CustomerTypeService implements ICustomerTypeService {
     @Override
     public void delete(CustomerType customerType) {
         customerTypeRepository.delete(customerType);
+    }
+
+    @Override
+    public void delete(String id) {
+        customerTypeRepository.deleteById(id);
     }
 }
