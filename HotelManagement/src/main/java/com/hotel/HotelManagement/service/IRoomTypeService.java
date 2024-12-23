@@ -13,4 +13,5 @@ public interface IRoomTypeService {
 
     RoomType save(RoomType roomType);
     void delete(RoomType roomType);
+    void delete(String roomTypeName);
 }

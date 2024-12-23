@@ -14,4 +14,5 @@ public interface ICustomerTypeService {
 
     CustomerType save(CustomerType customerType);
     void delete(CustomerType customerType);
+    void delete(String id);
 }

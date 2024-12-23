@@ -30,17 +30,17 @@ public class RevenueReportService implements IRevenueReportService{
     }
 
     @Override
-    public RevenueReport addRevenueReport(RevenueReport report) {
-        return null;
+    public RevenueReport save(RevenueReport report) {
+        return repo.save(report);
     }
 
     @Override
-    public RevenueReport updateRevenueReport(RevenueReport report) {
-        return null;
+    public void delete(int id) {
+        repo.deleteById(id);
     }
 
     @Override
-    public RevenueReport deleteRevenueReport(int id) {
-        return null;
+    public void delete(RevenueReport report) {
+        repo.delete(report);
     }
 }

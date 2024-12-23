@@ -22,10 +22,10 @@ public class Regulation {
     private String lock;
 
     @Column(name = "MaxGuestCount", nullable = false)
-    private int maxGuestCount;
+    private int defaultMaxGuestCount;
 
     @Column(name = "OverGuestRate", precision = 2, nullable = false)
-    private double overGuestRate;
+    private double defaultOverGuestRate;
 
 
 

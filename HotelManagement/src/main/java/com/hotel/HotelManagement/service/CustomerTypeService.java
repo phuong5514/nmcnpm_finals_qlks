@@ -36,4 +36,9 @@ public class CustomerTypeService implements ICustomerTypeService {
     public void delete(CustomerType customerType) {
         customerTypeRepository.delete(customerType);
     }
+
+    @Override
+    public void delete(String id) {
+        customerTypeRepository.deleteById(id);
+    }
 }

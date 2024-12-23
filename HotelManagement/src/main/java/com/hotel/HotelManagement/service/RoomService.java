@@ -29,8 +29,8 @@ public class RoomService implements IRoomService {
     }
 
     @Override
-    public List<Room> getRoomsById(Integer id) {
-        return roomRepository.findRoomsByRoomIdContaining(id);
+    public Room getRoomById(Integer id) {
+        return roomRepository.findRoomByRoomId(id);
     }
 
     @Override

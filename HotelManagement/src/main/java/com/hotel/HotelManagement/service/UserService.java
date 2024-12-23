@@ -40,6 +40,11 @@ public class UserService implements UserServiceInterface{
         userRepository.delete(user);
     }
 
+    @Override
+    public void deleteUser(Integer id) {
+        userRepository.deleteById(id);
+    }
+
     @Autowired
     private RoleRepository roleRepository;
 

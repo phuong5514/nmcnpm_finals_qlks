@@ -1,6 +1,5 @@
 package com.hotel.HotelManagement.dto.request;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CustomerTypeQueryRequest {
-    private String customerTypeId;
-    private String customerTypeName;
+public class RoomTypeCreationOrUpdateRequest {
+    private String roomTypeName;
+    private int basePrice;
 }

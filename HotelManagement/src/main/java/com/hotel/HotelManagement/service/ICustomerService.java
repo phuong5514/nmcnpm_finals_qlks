@@ -15,5 +15,6 @@ public interface ICustomerService {
 
     Customer save(Customer customer);
     void delete(Customer customer);
+    void delete(int id);
 
 }

@@ -12,4 +12,5 @@ public interface IInvoiceService {
 
     Invoice save(Invoice invoice);
     void delete(Invoice invoice);
+    void delete(int id);
 }

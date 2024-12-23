@@ -36,4 +36,9 @@ public class RoomTypeService implements IRoomTypeService {
     public void delete(RoomType roomType) {
         roomTypeRepository.delete(roomType);
     }
+
+    @Override
+    public void delete(String roomTypeName) {
+        roomTypeRepository.deleteById(roomTypeName);
+    }
 }

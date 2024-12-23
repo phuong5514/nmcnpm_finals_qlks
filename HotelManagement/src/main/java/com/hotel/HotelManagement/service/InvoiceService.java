@@ -32,4 +32,9 @@ public class InvoiceService implements IInvoiceService {
     public void delete(Invoice invoice) {
         invoiceRepository.delete(invoice);
     }
+
+    @Override
+    public void delete(int id) {
+        invoiceRepository.deleteById(id);
+    }
 }

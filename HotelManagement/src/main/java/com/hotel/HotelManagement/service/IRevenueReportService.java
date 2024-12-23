@@ -13,7 +13,7 @@ public interface IRevenueReportService {
     RevenueReport getRevenueReportById(int id);
     RevenueReport getRevenueReportByMonth(Date month);
 
-    RevenueReport addRevenueReport(RevenueReport report);
-    RevenueReport updateRevenueReport(RevenueReport report);
-    RevenueReport deleteRevenueReport(int id);
+    RevenueReport save(RevenueReport report);
+    void delete(int id);
+    void delete(RevenueReport report);
 }

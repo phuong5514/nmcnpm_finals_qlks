@@ -1,16 +1,18 @@
 package com.hotel.HotelManagement.controller.User;
 
-import com.hotel.HotelManagement.dto.request.CustomerTypeQueryRequest;
-import com.hotel.HotelManagement.dto.request.RoomQueryRequest;
+import com.hotel.HotelManagement.dto.request.*;
 import com.hotel.HotelManagement.entity.*;
 import com.hotel.HotelManagement.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.Date;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -30,115 +32,170 @@ public class UserOwnerController {
     @Autowired
     private CustomerTypeService customerTypeService;
 
-    @GetMapping("/get-all/room-type")
-    public List<RoomType> getRoomTypes() {
-        return roomTypeService.getAllRoomTypes();
+    @GetMapping("/room-types")
+    public String getRoomType(Model model) {
+        List<RoomType> roomTypes = roomTypeService.getAllRoomTypes();
+        model.addAttribute("roomTypes", roomTypes);
+        return "roomTypeList";
     }
 
-    @GetMapping("/query/room-type")
-    public List<RoomType> queryRoomTypes(@RequestBody String query) {
-        return roomTypeService.findRoomTypesByName(query);
+    @GetMapping("/room-types/query")
+    public String queryRoomType(@RequestParam String name, Model model) {
+        List<RoomType> roomTypes = roomTypeService.findRoomTypesByName(name);
+        model.addAttribute("roomTypes", roomTypes);
+        return "roomTypeList";
     }
 
-    @PostMapping("/save/room-type")
-    public RoomType createOrUpdateRoomType(@RequestBody RoomType roomType) {
+    @PostMapping("/room-types/save")
+    public RoomType createOrUpdateRoomType(@RequestBody RoomTypeCreationOrUpdateRequest roomTypeDTO) {
+        RoomType roomType = new RoomType();
+        if (roomType.getRoomTypeName() != null) {
+            roomType.setRoomTypeName(roomType.getRoomTypeName());
+        }
+        roomType.setBasePrice(roomTypeDTO.getBasePrice());
+
         return roomTypeService.save(roomType);
     }
 
-    @PostMapping("/delete/room-type")
-    public void deleteRoomType(@RequestBody RoomType roomType) {
-        roomTypeService.delete(roomType);
+
+    @PostMapping("/room-types/delete")
+    public void deleteRoomType(@RequestBody RoomTypeDeletionRequest roomTypeDTO) {
+        RoomType roomType = roomTypeService.findRoomTypeByName(roomTypeDTO.getRoomTypeName());
+        if (roomType != null) {
+            roomTypeService.delete(roomType);
+        } else {
+            throw new IllegalArgumentException("room type not found");
+        }
     }
 
-    @GetMapping("/get-all/room")
-    public List<Room> getRooms() {
-        return roomService.getRooms();
+    @GetMapping("rooms")
+    public String getRoom(Model model) {
+        List<Room> rooms = roomService.getRooms();
+        model.addAttribute("rooms", rooms);
+        return "roomList";
     }
 
-    @GetMapping("/query/room")
-    public List<Room> queryRooms(@RequestBody RoomQueryRequest query) {
-        if (query == null) {
-            return null;
-        }
+    @GetMapping("/rooms/query")
+    public String queryRoom(
+            @RequestParam(required = false) String roomTypeName,
+            @RequestParam(required = false) String roomStatusString,
+            Model model) {
 
-        int roomId = query.getRoomId();
-        if (roomId >= 0) {
-            return roomService.getRoomsById(roomId);
-        }
-
-        String roomTypeName = query.getRoomTypeName();
+        List<Room> rooms = Collections.emptyList();
         if (roomTypeName != null) {
-            RoomType type = roomTypeService.findRoomTypeByName(roomTypeName);
-            return roomService.getRoomsByRoomType(type);
+            RoomType roomType = roomTypeService.findRoomTypeByName(roomTypeName);
+            rooms = roomService.getRoomsByRoomType(roomType);
         }
 
-        String roomStatusString = query.getRoomStatusString();
         if (roomStatusString != null) {
             Room.Status status = Room.Status.valueOf(roomStatusString);
-            return roomService.getRoomsByStatus(status);
+            rooms = roomService.getRoomsByStatus(status);
         }
 
-        return null;
+
+
+        model.addAttribute("rooms", rooms);
+
+        return "roomList";
     }
 
-    @PostMapping("/save/room")
-    public Room createOrUpdateRoom(@RequestBody Room room) {
+    @PostMapping("/rooms/add")
+    public Room addRoom(@RequestBody RoomCreationRequest roomDTO) {
+        Room room = new Room();
+        RoomType roomType = roomTypeService.findRoomTypeByName(roomDTO.getRoomTypeString());
+        room.setRoomType(roomType);
+
         return roomService.save(room);
     }
 
-    @PostMapping("/delete/room")
-    public void deleteRoom(@RequestBody Room room) {
-        roomService.delete(room);
+    @PostMapping("/rooms/update")
+    public Room updateRoom(@RequestBody RoomUpdateRequest roomDTO) {
+        RoomType roomType = roomTypeService.findRoomTypeByName(roomDTO.getRoomTypeString());
+        Room.Status status = Room.Status.valueOf(roomDTO.getRoomStatusString());
+        Room room = new Room(roomDTO.getRoomId(), status, roomType);
+
+        return roomService.save(room);
     }
 
-    @PostMapping("/save/regulation")
-    public Regulation updateRegulation(@RequestBody Regulation regulation) {
+    @PostMapping("/rooms/delete")
+    public void deleteRoom(@RequestBody RoomDeletionRequest roomDTO) {
+        roomService.getRoomById(roomDTO.getRoomId());
+    }
+
+    @GetMapping("/regulation")
+    public String getRegulation(Model model) {
+        Regulation regulation = regulationService.getRegulation();
+        model.addAttribute("regulation", regulation);
+        return "regulation";
+    }
+
+    @PostMapping("/regulation/save")
+    public Regulation updateRegulation(@RequestBody RegulationUpdateRequest regulationDTO) {
+        Regulation regulation = regulationService.getRegulation();
+
+        int maxGuestCount = regulationDTO.getDefaultMaxGuestCount();
+        if (maxGuestCount > 0) {
+            regulation.setDefaultMaxGuestCount(maxGuestCount);
+        }
+
+        double overGuestRate = regulationDTO.getDefaultOverGuestRate();
+        if (overGuestRate >= 0.0) {
+            regulation.setDefaultOverGuestRate(overGuestRate);
+        }
+
         return regulationService.saveRegulation(regulation);
     }
 
-    @GetMapping("/get/revenue-report")
-    public RevenueReport getRevenueReport(@RequestBody Date date) {
+    @GetMapping("/revenue-reports")
+    public RevenueReport getRevenueReport(@RequestParam Date date) {
         return revenueReportService.getRevenueReportByMonth(date);
     }
 
-    @PostMapping("/save/revenue-report")
-    public RevenueReport saveRevenueReport(@RequestBody RevenueReport revenueReport) {
-        revenueReportService.addRevenueReport(revenueReport);
-        return revenueReport;
-    }
+    @PostMapping("/revenue-reports/save")
+    public RevenueReport saveRevenueReport(@RequestBody RevenueReportCreationOrUpdateRequest revenueReportDTO) {
+        RevenueReport revenueReport = new RevenueReport();
 
-    @GetMapping("/get/customer-type")
-    public List<CustomerType> getCustomerTypes() {
-        return customerTypeService.getAllCustomerTypes();
-    }
-
-    @GetMapping("/query/customer-type")
-    public List<CustomerType> queryCustomerTypes(@RequestBody CustomerTypeQueryRequest customerTypeQueryRequest) {
-        if (customerTypeQueryRequest == null) {
-            return null;
+        int revenueReportId = revenueReportDTO.getRevenueReportID();
+        if (revenueReportId > 0) {
+            revenueReport.setRevenueReportID(revenueReportId);
         }
 
-        String customerTypeId = customerTypeQueryRequest.getCustomerTypeId();
-        if (customerTypeId != null) {
-            return List.of(customerTypeService.findCustomerTypeById(customerTypeId));
-        }
+        revenueReport.setRevenue(revenueReportDTO.getRevenue());
+        revenueReport.setMonth(revenueReportDTO.getMonth());
+        revenueReport.setRoomType(revenueReportDTO.getRoomType());
+        revenueReport.setPercentage(revenueReportDTO.getPercentage());
 
-        String customerTypeName = customerTypeQueryRequest.getCustomerTypeName();
-        if (customerTypeName != null) {
-            return customerTypeService.findCustomerTypesByName(customerTypeName);
-        }
-
-        return null;
+        return revenueReportService.save(revenueReport);
     }
 
-    @PostMapping("/save/customer-type")
-    public CustomerType createOrUpdateCustomerType(@RequestBody CustomerType customerType) {
-        customerTypeService.save(customerType);
-        return customerType;
+    @GetMapping("/customer-types")
+    public String getCustomerType(Model model) {
+        List<CustomerType> customerTypes = customerTypeService.getAllCustomerTypes();
+        model.addAttribute("customerTypes", customerTypes);
+        return "customerTypeList";
     }
 
-    @PostMapping("/delete/customer-type")
-    public void deleteCustomerType(@RequestBody CustomerType customerType) {
-        customerTypeService.delete(customerType);
+    @GetMapping("/customer-types/query")
+    public String queryCustomerTypes(@RequestParam String customerTypeName, Model model) {
+        List<CustomerType> customerTypes = customerTypeService.findCustomerTypesByName(customerTypeName);
+        model.addAttribute("customerTypes", customerTypes);
+        return "customerTypeList";
+    }
+
+    @PostMapping("/customer-types/save")
+    public CustomerType createOrUpdateCustomerType(@RequestBody CustomerTypeCreationOrUpdateRequest customerTypeDTO) {
+        CustomerType customerType = new CustomerType();
+        String customerTypeID = customerTypeDTO.getCustomerTypeID();
+        if (customerTypeID != null) {
+            customerType.setCustomerTypeID(customerTypeID);
+        }
+        customerType.setCustomerTypeName(customerTypeDTO.getCustomerTypeName());
+        customerType.setFeeModifier(customerTypeDTO.getFeeModifier());
+        return customerTypeService.save(customerType);
+    }
+
+    @PostMapping("/customer-types/delete")
+    public void deleteCustomerType(@RequestBody CustomerTypeDeletionRequest customerTypeDTO) {
+        customerTypeService.delete(customerTypeDTO.getCustomerTypeID());
     }
 }

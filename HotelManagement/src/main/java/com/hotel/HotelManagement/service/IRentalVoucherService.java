@@ -11,4 +11,6 @@ public interface IRentalVoucherService {
     List<RentalVoucher> findRentalVouchersByStatus(RentalVoucher.Status status);
 
     RentalVoucher save(RentalVoucher rentalVoucher);
+    void delete(RentalVoucher rentalVoucher);
+    void delete(int id);
 }
