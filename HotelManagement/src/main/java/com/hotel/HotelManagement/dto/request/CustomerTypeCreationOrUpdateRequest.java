@@ -1,7 +1,5 @@
 package com.hotel.HotelManagement.dto.request;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

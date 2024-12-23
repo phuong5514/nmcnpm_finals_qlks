@@ -1,9 +1,5 @@
 package com.hotel.HotelManagement.dto.request;
 
-import com.hotel.HotelManagement.entity.Customer;
-import com.hotel.HotelManagement.entity.RentalVoucher;
-import com.hotel.HotelManagement.entity.Room;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

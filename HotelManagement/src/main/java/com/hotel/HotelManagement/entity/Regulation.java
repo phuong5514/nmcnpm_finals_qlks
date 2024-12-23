@@ -5,9 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.Check;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 
 @Entity

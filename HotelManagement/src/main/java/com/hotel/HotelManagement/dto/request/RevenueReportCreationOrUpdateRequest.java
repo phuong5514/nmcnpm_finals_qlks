@@ -1,7 +1,6 @@
 package com.hotel.HotelManagement.dto.request;
 
 import com.hotel.HotelManagement.entity.RoomType;
-import jakarta.persistence.*;
 import lombok.*;
 
 import java.sql.Date;

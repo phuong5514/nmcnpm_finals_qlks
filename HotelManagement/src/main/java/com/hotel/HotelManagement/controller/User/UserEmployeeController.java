@@ -39,6 +39,13 @@ public class UserEmployeeController {
     @Autowired
     private CustomerTypeService customerTypeService;
 
+    @GetMapping("/regulation")
+    public String regulation(Model model) {
+        Regulation regulation = regulationService.getRegulation();
+        model.addAttribute("regulation", regulation);
+        return "regulation";
+    }
+
     @GetMapping("/rooms")
     public String getRoom(Model model) {
         List<Room> rooms = roomService.getRooms();

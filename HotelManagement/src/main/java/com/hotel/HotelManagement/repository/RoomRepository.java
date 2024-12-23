@@ -2,7 +2,6 @@ package com.hotel.HotelManagement.repository;
 
 import com.hotel.HotelManagement.entity.Room;
 import com.hotel.HotelManagement.entity.RoomType;
-import jakarta.persistence.Enumerated;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
