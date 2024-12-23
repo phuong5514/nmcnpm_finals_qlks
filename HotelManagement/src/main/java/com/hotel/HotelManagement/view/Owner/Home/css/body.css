@@ -1,0 +1,4 @@
+html, body {
+    height: 100vh; /* Chiều cao bằng 100% khung nhìn trình duyệt */
+    overflow-y: hidden; /* Không cho phép cuộn */
+}

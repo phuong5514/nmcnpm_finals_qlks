@@ -1,0 +1,64 @@
+.information-container {
+    width: 90%;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #007b83; /* Background color */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    margin-left: 10px;
+    height: 706px;
+}
+
+.detail {
+    width: 98.7%; /* Occupy full width of parent container */
+    padding: 10px;
+    align-items: flex-start; /* Align items to the left */
+    flex-direction: column; /* Stack elements vertically */
+    text-align: left; /* Ensure text aligns left */
+    font-size: 30px;
+    color: white;
+    background-color: #005662; /* Background for detail-item */
+    border-radius: 10px;
+}
+
+.detail p {
+    margin: 5px 0; /* Reduce top and bottom space between lines */
+    line-height: 1.2; /* Adjust line height for tighter spacing */
+}
+
+.room-list-and-pie-chart{
+    display: flex;
+    width: 98%; /* Occupy full width of parent container */
+    padding: 10px;
+    align-items: flex-start; /* Align items to the left */
+    
+    text-align: left; /* Ensure text aligns left */
+    font-size: 30px;
+    color: white;
+    border-radius: 10px;
+    margin-top: 10px;
+    width: 98.7%;
+    background-color: #007b83; /* Background color */
+}
+
+.room-list{
+    background-color: #005662; /* Background for detail-item */
+    width: 50%;
+    border-radius: 10px;
+    height: 540px;
+  
+}
+
+.list{
+    list-style-type: decimal;
+}
+
+.pie-chart-container{
+    text-align: center;
+    background-color: #005662; /* Background for detail-item */
+    margin-left: 10px;
+    border-radius: 10px;
+    width: 50%;
+    height: 540px;
+}

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/header.css"/>
+    <link rel="stylesheet" href="css/side-bar-menu.css"/>
+    <link rel="stylesheet" href="css/below-header.css"/>
+    <link rel="stylesheet" href="css/tab-content.css"/>
+
+
+</head>
+<body>
+<!--Header-->
+    <div class="header-container">
+        <p id="header-title">Quản lý khách sạn.</p>
+        <a href="../../Login/index.html">User(Owner)</a>
+    </div>
+
+<div class="below-header">
+    <!--Side Bar Menu-->
+    <div class="side-bar-container">
+        <p>Menu</p>
+        <a href="../Home/main.html" class="menu-item"> <span class="menu-icon">&#8962;</span> Home</a>
+        <a href="#" class="menu-item"> <span class="menu-icon">&#9733;</span> Rule set</a>
+        <a href="../Insight/main.html" class="menu-item"> <span class="menu-icon">&#128065;</span> Insight</a>
+        <a href="settings.html" class="menu-item setting-btn"> <span class="menu-icon">&#9881;</span> Setting</a>
+    </div>
+    <!--Navigate tabs: Room category, Guest, Rooms-->
+    <div class="nav-tabs-container">
+        <!--Tab items-->
+        <div class="tabs-item">
+            <a href="#" class="tab-link active" data-tab="room-category">Room category</a>
+            <a href="#" class="tab-link" data-tab="guest">Guest</a>
+            <a href="#" class="tab-link" data-tab="rooms">Rooms</a>
+            <!--Đếm từ DB-->
+        </div>
+        <!--Tab contents-->
+        <div class="tab-content">
+            <!--Room category content-->
+            <div class="content" id="room-category">
+                <div class="search-bar-and-list">
+                    <!--Search bar-->
+                    <form class="search-bar" action="">
+                        <input type="text" name="query" />
+                        <button type="submit">Search</button>
+                    </form>
+                    <!--List-->
+                    <h2>List room category</h2>
+                    <ul class="list">
+                        <!--Danh sách lấy từ DB-->
+                        <li>A</li>
+                        <li>B</li>
+                        <li>C</li>
+                    </ul>
+                </div>
+                <div class="Form-to-add-item">
+                    <form action="">
+                        <label for="name">Name:</label>
+                        <br>
+                        <input type="text" id="name" name="name" required>
+                        <br>
+                        <label for="base price">Base Price:</label>
+                        <br>
+                        <input type="number" id="base price" name="base price" required>
+                        <button type="submit">Save</button>
+                    </form>
+                </div>
+            </div>
+            <!--Guest content-->
+            <div class="content" id="guest">
+                <div class="search-bar-and-list">
+                    <!--Search bar-->
+                    <form class="search-bar" action="">
+                        <input type="text" name="query" />
+                        <button type="submit">Search</button>
+                    </form>
+                    <!--List-->
+                    <h2>List guest type</h2>
+                    <ul class="list">
+                        <!--Danh sách lấy từ DB-->
+                        <li>A</li>
+                        <li>B</li>
+                        <li>C</li>
+                    </ul>
+                </div>
+                <div class="Form-to-add-item">
+                    <form action="">
+                        <label for="name">Name:</label>
+                        <br>
+                        <input type="text" id="name" name="name" required>
+                        <br>
+                        <label for="price-multiplier">Price multiplier:</label>
+                        <br>
+                        <input type="number" id="price-multiplier" name="price-multiplier" step="0.01"  required>
+                        <label for="max guest per room">Max guest per room:</label>
+                        <br>
+                        <input type="number" id="max guest per room" name="max guest per room" required>
+                        <label for="2nd guest rate">2nd guest rate: </label>
+                        <br>
+                        <input type="number" id="2nd guest rate" name="2nd guest rate" step="0.01"  required>
+                        <label for="3rd guest rate">3rd guest rate: </label>
+                        <br>
+                        <input type="number" id="3rd guest rate" name="3rd guest rate" step="0.01"  required>
+                        <button type="submit">Save</button>
+                    </form>
+                </div>
+            </div>
+            <!--Room content-->
+            <div class="content" id="rooms">
+                <div class="search-bar-and-list">
+                    <!--Search bar-->
+                    <form class="search-bar" action="">
+                        <input type="text" name="query" />
+                        <button type="submit">Search</button>
+                    </form>
+                    <!--List-->
+                    <h2>List room</h2>
+                    <ul class="list">
+                        <!--Danh sách lấy từ DB-->
+                        <li>A</li>
+                        <li>B</li>
+                        <li>C</li>
+                    </ul>
+                </div>
+                <div class="Form-to-add-item">
+                    <form action="">
+                        <label for="name">Name:</label>
+                        <br>
+                        <input type="text" id="name" name="name" required>
+                        <br>
+                        <label for="room type">Room type:</label>
+                        <br>
+                        <input type="text" id="room type" name="room type" required>
+                        <button type="submit">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="tab-content.js"></script>
+
+</body>
+</html>

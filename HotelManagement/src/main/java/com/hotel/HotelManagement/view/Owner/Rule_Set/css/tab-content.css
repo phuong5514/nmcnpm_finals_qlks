@@ -1,0 +1,159 @@
+.nav-tabs-container{
+    padding-top: 10px;
+    padding-left: 10px;
+    width: 100%;
+    height: 100%;
+}
+
+.tabs-item {
+    width: 100%; /* Chiếm toàn bộ chiều ngang màn hình */
+    background-color: #007b83; /* Màu nền */
+    border-radius: 20px; /* Bo góc container */
+    display: flex; /* Kích hoạt Flexbox */
+    flex-wrap: wrap; /* Cho phép xuống dòng */
+    justify-content: flex-start; /* Căn trái các phần tử */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    padding: 15px; /* Khoảng cách trong container */
+    text-align: left; /* Căn trái văn bản bên trong */
+    gap: 10px; /* Khoảng cách giữa các phần tử */
+    box-sizing: border-box; /* Tính cả padding vào kích thước */
+    height: auto;
+}
+
+
+.tabs-item a {
+    color: white; /* Màu chữ */
+    text-decoration: none; /* Loại bỏ gạch chân */
+    font-size: 24px; /* Kích thước chữ */
+    padding: 10px 15px; /* Khoảng cách trong từng tab */
+    border-radius: 10px; /* Bo góc cho từng tab */
+    transition: background-color 0.3s; /* Hiệu ứng hover */
+}
+
+.tabs-item a:hover {
+    background-color: #005662; /* Màu nền khi hover */
+    color: #ffb74d; /* Màu chữ khi hover */
+}
+
+.tabs-item p {
+    color: white; /* Màu chữ */
+    margin: 10px 0 0; /* Khoảng cách trên cùng */
+    font-size: 24px; /* Kích thước chữ */
+    font-weight: bold; /* Chữ đậm */
+    width: 100%; /* Đảm bảo phần tử chiếm hết chiều rộng để xuống dòng */
+    text-align: left; /* Căn giữa nội dung */
+}
+
+.content {
+    display: flex;
+    background-color: #007b83; /* Màu nền */
+    margin-top: 10px;
+    border-radius: 20px; /* Làm tròn 4 góc */
+    overflow: hidden; /* Ẩn phần tử con vượt ra ngoài */
+    height: 76vh;
+}
+
+.search-bar-and-list {
+    background-color: #007b83; /* Màu nền nhẹ hơn */
+    flex: 1; /* Chia đều không gian */
+    padding: 20px;
+    border-radius: 20px 0 0 20px; /* Làm tròn góc trái */
+}
+
+.search-bar-and-list h2{
+    font-size: 48px;
+    color: white;   
+}
+
+.Form-to-add-item {
+    background-color: #007b83; /* Màu nền khác cho form */
+    flex: 1; /* Chia đều không gian */
+    padding: 20px;
+    border-radius: 0 20px 20px 0; /* Làm tròn góc phải */
+    border-left: 10px solid white; 
+}
+.search-bar input {
+    height: 48px; /* Đặt chiều cao giống button */
+    border-radius: 20px; /* Bo góc đồng nhất */
+    padding: 10px; /* Khoảng cách bên trong */
+    font-size: 16px; /* Kích thước chữ */
+    border: 1px solid #ccc; /* Viền */
+    box-sizing: border-box; /* Bao gồm padding và border */
+    width: 70%;
+}
+
+.search-bar button {
+    height: 48px; /* Đặt cùng chiều cao với input */
+    width: 100px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px; /* Kích thước chữ */
+    background-color: white; /* Màu nền */
+    color: black; /* Màu chữ */
+    box-sizing: border-box;
+}
+
+
+.search-bar button:hover{
+    background-color: #005662; /* Màu nền khi hover */
+    color: #ffb74d; /* Màu chữ khi hover */
+}
+
+.Form-to-add-item input {
+    font-size: 48px; /* Kích thước chữ */
+    height: 48px; /* Chiều cao của ô input */
+    padding: 10px; /* Khoảng cách bên trong ô */
+    border-radius: 20px; /* Bo tròn góc */
+    border: 1px solid #ccc; /* Viền xung quanh */
+    box-sizing: border-box; /* Tính cả padding và border vào kích thước */
+    width: 100%;
+}
+
+.Form-to-add-item label{
+    font-size: 24px;
+    color: white;
+}
+
+.Form-to-add-item button{
+    height: 48px; /* Đặt cùng chiều cao với input */
+    width: 100px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px; /* Kích thước chữ */
+    background-color: white; /* Màu nền */
+    color: black; /* Màu chữ */
+    box-sizing: border-box;
+    margin-top: 10px;
+}
+
+.Form-to-add-item button:hover{
+    background-color: #005662; /* Màu nền khi hover */
+    color: #ffb74d; /* Màu chữ khi hover */
+}
+
+.tab-link.active {
+    background-color: #005662; /* Màu nền nổi bật */
+    font-weight: bold; /* Làm chữ đậm */
+}
+
+.content {
+    display: none; /* Ẩn nội dung mặc định */
+}
+
+.content.active {
+    display: flex; /* Hiển thị nội dung tab đang được chọn */
+}
+
+.list {
+    color: white;
+    list-style-type: decimal;
+    font-size: 40px;
+}
+
+/* Kiểu sáng khi được chọn */
+.list li.active {
+    background-color: rgb(3, 189, 246); /* Nền sáng */
+    color: black; /* Màu chữ đậm */
+    font-weight: bold; /* Chữ in đậm */
+  }
+  

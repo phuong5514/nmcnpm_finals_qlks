@@ -1,0 +1,35 @@
+/* Container của Header */
+.header-container {
+    display: flex; /* Sử dụng Flexbox để sắp xếp các phần tử ngang */
+    justify-content: space-between; /* Căn hai phần tử ra hai phía */
+    align-items: center; /* Căn giữa theo trục dọc */
+    background-color: #007b83; /* Màu nền */
+    padding: 10px 20px; /* Khoảng cách bên trong */
+    color: white; /* Màu chữ */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Hiệu ứng đổ bóng */
+    border-radius: 20px; /* Gọt tròn 4 góc container */
+    border-bottom: 3px;
+}
+
+/* Tiêu đề của Header */
+#header-title {
+    font-size: 48px; /* Kích thước chữ lớn */
+    font-weight: bold; /* Chữ in đậm */
+    margin: 0; /* Xóa khoảng cách mặc định */
+}
+
+/* Nút User (Owner) */
+.header-container a {
+    background-color: #00acc1; /* Màu nền */
+    color: white; /* Màu chữ */
+    text-decoration: none; /* Loại bỏ gạch chân */
+    padding: 8px 15px; /* Khoảng cách bên trong */
+    font-size: 48px; /* Kích thước chữ */
+    border-radius: 4px; /* Bo góc */
+    transition: background-color 0.3s ease; /* Hiệu ứng mượt khi hover */
+}
+
+/* Hiệu ứng hover cho nút User (Owner) */
+.header-container a:hover {
+    background-color: #00838f; /* Đổi màu nền khi hover */
+}

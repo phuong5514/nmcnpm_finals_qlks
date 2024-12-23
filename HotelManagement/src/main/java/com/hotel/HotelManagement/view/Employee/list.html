@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="css/list.css">
+    <title>Quản lý khách sạn</title>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-title">Quản lý khách sạn.</div>
+        <div class="header-user">User(Employee)</div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="side-bar-container">
+        <p>Menu</p>
+        <a href="home.html" class="menu-item"> <span class="menu-icon">&#8962;</span> Home</a>
+        <a href="list.html" class="menu-item"> <span class="menu-icon"> <i class="fas fa-list"></i> </span> List</a>
+	<a href="bill.html" class="menu-item"> <span class="menu-icon"> <i class="fas fa-file-invoice"></i> </i> </span> Bill</a>
+        <a href="settings.html" class="menu-item setting-btn"> <span class="menu-icon">&#9881;</span> Setting</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Filters -->
+        <div class="filters">
+            <div class="filter-group">
+                <strong>Room types:</strong>
+                <label><input type="checkbox" value="A" class="type-filter" checked> A</label>
+                <label><input type="checkbox" value="B" class="type-filter" checked> B</label>
+                <label><input type="checkbox" value="C" class="type-filter" checked> C</label>
+            </div>
+
+            <div class="filter-group">
+                <strong>Availability:</strong>
+                <label><input type="checkbox" value="Vacant" class="availability-filter" checked> Vacant</label>
+                <label><input type="checkbox" value="Reserved" class="availability-filter" checked> Reserved</label>
+                <label><input type="checkbox" value="Occupied" class="availability-filter" checked> Occupied</label>
+            </div>
+
+            <div class="search-bar">
+                <input type="text" id="search" placeholder="Hinted search text">
+                <i class="fa fa-search"></i>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <!-- Room List -->
+            <div class="room-list" id="room-list">
+                <!-- Dynamically populated -->
+            </div>
+
+            <!-- Room Details -->
+            <div class="room-details" id="room-details">
+                <p><strong>Name:</strong> <span id="room-name">-</span></p>
+                <p><strong>Type:</strong> <span id="room-type">-</span></p>
+                <p><strong>Availability:</strong> <span id="room-availability">-</span></p>
+                <p><strong>Condition:</strong> <span id="room-condition">-</span></p>
+                <div class="footer">
+                    <button class="btn btn-primary" onclick="redirectToBookPage()">Book this room</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/list.js"></script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>Quản lý khách sạn</title>
+  <link rel="stylesheet" href="css/book.css">
+</head>
+<body>
+  <div class="header">
+    <div class="header-title">Quản lý khách sạn.</div>
+    <div class="header-user">User(Employee)</div>
+  </div>
+
+  <div class="side-bar-container">
+    <p>Menu</p>
+    <a href="home.html" class="menu-item"> <span class="menu-icon">&#8962;</span> Home</a>
+    <a href="list.html" class="menu-item"> <span class="menu-icon"> <i class="fas fa-list"></i> </span> List</a>
+    <a href="bill.html" class="menu-item"> <span class="menu-icon"> <i class="fas fa-file-invoice"></i> </i> </span> Bill</a>
+    <a href="settings.html" class="menu-item setting-btn"> <span class="menu-icon">&#9881;</span> Setting</a>
+
+  </div>
+
+  <div class="main-content">
+    <div class="filters">
+      <div class="filter-group">
+        <strong>Room types:</strong>
+        <label><input type="checkbox" value="A" class="type-filter" checked> A</label>
+        <label><input type="checkbox" value="B" class="type-filter" checked> B</label>
+        <label><input type="checkbox" value="C" class="type-filter" checked> C</label>
+      </div>
+
+      <div class="filter-group">
+        <strong>Availability:</strong>
+        <label><input type="checkbox" value="Vacant" class="availability-filter" checked> Vacant</label>
+        <label><input type="checkbox" value="Reserved" class="availability-filter" checked> Reserved</label>
+        <label><input type="checkbox" value="Occupied" class="availability-filter" checked> Occupied</label>
+      </div>
+
+      <div class="search-bar">
+        <input type="text" id="search" placeholder="Hinted search text">
+        <i class="fa fa-search"></i>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="room-list" id="room-list">
+        </div>
+
+      <div class="book-info" id="book-info">
+        <p><strong>Book Information</strong></p>
+        <p><strong>Name:</strong> <span id="room-name">-</span></p>
+
+        <div class="grid-container">
+          <p><strong>Type:</strong> <span id="room-type">-</span></p>
+          <p><strong>Total:</strong> <span id="total-price">-</span></p>
+        </div>
+
+        <div class="grid-container">
+          <p><strong>Book time:</strong> <input type="datetime-local" id="check-in-time"></p>
+          <p><strong>Check out time:</strong> <input type="datetime-local" id="check-out-time"></p>
+        </div>
+
+        <p><strong>People count:</strong> <input type="number" id="people-count"></p>
+        <div id="guest-sections">
+        </div>
+
+        <div class="footer">
+          <button class="btn btn-primary">Book this room</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="js/book.js"></script>
+</body>
+</html>

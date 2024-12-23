@@ -1,0 +1,86 @@
+.information-container {
+    width: 90%;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #007b83; /* Background color */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    margin-left: 10px;
+    height: 750px;
+}
+
+.detail {
+    display: flex;
+    justify-content: space-between; /* Space between each detail-item */
+    width: 100%; /* Occupy full width of parent container */
+    padding: 10px;
+}
+
+.detail-item {
+    flex: 1; /* Distribute equal width to each detail-item */
+    text-align: left; /* Align text to the left */
+    padding: 15px; /* Padding inside each detail-item */
+    color: white; /* Text color */
+    font-size: 16px; /* Font size */
+    background-color: #005662; /* Background for detail-item */
+    border-radius: 10px; /* Rounded corners */
+    margin: 0 10px; /* Space between detail items */
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: center; /* Align content vertically */
+    align-items: flex-start; /* Align text to the start (left) */
+}
+
+.vacancies-and-notice {
+    display: flex;
+    width: 100%;
+    gap: 20px; /* Khoảng cách giữa hai khối */
+    margin-top: 20px;
+    height: 100vh;
+}
+
+.room-status-list {
+    width: 50%;; /* Chia đều không gian giữa hai khối */
+    padding: 20px; /* Khoảng cách bên trong */
+    background-color: #005662; /* Màu nền */
+    border-radius: 20px; /* Bo góc */
+    color: white; /* Màu chữ */
+    font-size: 16px; /* Kích thước chữ */
+    overflow-y: auto; /* Hiển thị thanh cuộn nếu nội dung quá nhiều */
+    max-height: 400px; /* Đặt chiều cao tối đa */
+    box-sizing: border-box; /* Bao gồm padding và border */
+    height: 100%;
+    overflow-y: auto; /* Tự động thêm thanh cuộn dọc nếu nội dung vượt quá */
+}
+
+.notice{
+    padding: 20px; /* Khoảng cách bên trong */
+    background-color: #005662; /* Màu nền */
+    border-radius: 20px; /* Bo góc */
+    color: white; /* Màu chữ */
+    overflow-y: auto; /* Hiển thị thanh cuộn nếu nội dung quá nhiều */
+    max-height: 400px; /* Đặt chiều cao tối đa */
+    box-sizing: border-box; /* Bao gồm padding và border */
+    width: 50%;
+}
+
+
+.room-status-list p, .notice p {
+    font-size: 24px; /* Kích thước chữ tiêu đề */
+    font-weight: bold; /* In đậm */
+    margin-bottom: 10px; /* Khoảng cách dưới */
+}
+
+.room-status-list ul, .notice ul {
+    list-style: none; /* Xóa dấu chấm đầu dòng */
+    padding: 0; /* Xóa khoảng cách mặc định */
+}
+
+.room-status-list ul li, .notice ul li {
+    margin-bottom: 10px; /* Khoảng cách giữa các dòng */
+    background-color: #007b83; /* Màu nền item */
+    padding: 10px; /* Khoảng cách bên trong item */
+    border-radius: 10px; /* Bo góc item */
+}
+

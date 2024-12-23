@@ -20,7 +20,7 @@ public class Role {
     @Column(name = "RoleID", length = 4, nullable = false)
     private String roleID;
 
-    @Column(name = "RoleName", length = 20, nullable = false)
+    @Column(name = "RoleName", length = 20, nullable = false, unique = true)
     private String roleName;
 
     @ManyToMany(mappedBy = "roles")

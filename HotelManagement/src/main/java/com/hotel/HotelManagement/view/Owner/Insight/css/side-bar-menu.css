@@ -1,0 +1,78 @@
+/* Container của Side-Bar */
+.side-bar-container {
+    margin-top: 10px; /* Cách Header 10px */
+    width: 200px; /* Chiều rộng của sidebar */
+    height: 100vh; /* Chiều cao toàn màn hình */
+    background-color: #007b83; /* Màu nền */
+    padding-top: 20px; /* Khoảng cách trên cùng */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Hiệu ứng đổ bóng */
+    color: white; /* Màu chữ */
+    display: flex;
+    flex-direction: column; /* Xếp các mục theo chiều dọc */
+    height:90vh;
+    border-radius: 20px; /* Gọt tròn 4 góc container */
+    text-align: center;
+}
+
+/* Tiêu đề Menu */
+.side-bar-container p {
+    margin: 0 20px 20px; /* Khoảng cách trái và dưới */
+    font-size: 48px; /* Kích thước chữ */
+    font-weight: bold; /* Chữ in đậm */
+}
+
+/* Mục Menu */
+.side-bar-container a {
+    display: flex; /* Dùng flex để sắp xếp icon và text theo hàng ngang */
+    align-items: center; /* Căn giữa icon và text theo chiều dọc */
+    padding: 10px 20px; /* Khoảng cách trong mục menu */
+    color: white; /* Màu chữ */
+    text-decoration: none; /* Loại bỏ gạch chân */
+    font-size: 24px; /* Kích thước chữ */
+    margin-bottom: 10px; /* Khoảng cách giữa các mục menu */
+    border-radius: 4px; /* Bo góc */
+    transition: background-color 0.3s ease; /* Hiệu ứng mượt khi hover */
+    background-color: #00acc1;
+}
+
+/* Icon trong Sidebar */
+.menu-icon {
+    font-size: 18px; /* Kích thước của icon */
+    margin-right: 10px; /* Khoảng cách giữa icon và text */
+}
+
+/* Hiệu ứng hover */
+.side-bar-container a:hover {
+    background-color: #00838f; /* Đổi màu nền khi hover */
+}
+
+/* Mục menu đang được chọn (active) */
+.side-bar-container a.active {
+    background-color: #005662; /* Màu nền nổi bật */
+    font-weight: bold; /* Chữ in đậm */
+}
+
+/* Nút Setting */
+.setting-btn {
+    margin-top: 350px; /* Đẩy nút xuống cuối container */
+    background-color: #007b83; /* Màu nền giống sidebar */
+    text-align: center; /* Căn giữa nội dung */
+    border-top: 1px solid #005662; /* Đường viền ngăn cách với menu trên */
+    transition: background-color 0.3s; /* Hiệu ứng khi hover */
+}
+
+/* Icon Setting */
+.setting-btn .menu-icon {
+    font-size: 18px; /* Kích thước icon */
+    margin-right: 10px; /* Khoảng cách giữa icon và chữ */
+}
+
+/* Hiệu ứng hover */
+.setting-btn:hover {
+    background-color: #00838f; /* Màu nền khi hover */
+}
+
+/* Văn bản trong Setting */
+.setting-btn span {
+    font-size: 16px; /* Kích thước chữ */
+}
