@@ -26,5 +26,4 @@ public class CustomerType {
 
     @Column(name = "FeeModifier", precision = 2, nullable = false)
     private double feeModifier;
-
 }

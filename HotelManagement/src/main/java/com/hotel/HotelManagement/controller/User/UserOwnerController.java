@@ -92,8 +92,6 @@ public class UserOwnerController {
             rooms = roomService.getRoomsByStatus(status);
         }
 
-
-
         model.addAttribute("rooms", rooms);
 
         return "roomList";
@@ -105,6 +103,10 @@ public class UserOwnerController {
         RoomType roomType = roomTypeService.findRoomTypeByName(roomDTO.getRoomTypeString());
         room.setRoomType(roomType);
 
+        Regulation regulation = regulationService.getRegulation();
+        room.setMaxGuestCount(regulation.getDefaultMaxGuestCount());
+        room.setOverGuestRate(regulation.getDefaultOverGuestRate());
+
         return roomService.save(room);
     }
 
@@ -112,7 +114,7 @@ public class UserOwnerController {
     public Room updateRoom(@RequestBody RoomUpdateRequest roomDTO) {
         RoomType roomType = roomTypeService.findRoomTypeByName(roomDTO.getRoomTypeString());
         Room.Status status = Room.Status.valueOf(roomDTO.getRoomStatusString());
-        Room room = new Room(roomDTO.getRoomId(), status, roomType);
+        Room room = new Room(roomDTO.getRoomId(), status, roomType, roomDTO.getMaxGuestCount(), roomDTO.getOverGuestRate());
 
         return roomService.save(room);
     }

@@ -11,5 +11,6 @@ public class RoomUpdateRequest {
     private int roomId;
     private String roomStatusString;
     private String roomTypeString;
-
+    private int maxGuestCount;
+    private double overGuestRate;
 }

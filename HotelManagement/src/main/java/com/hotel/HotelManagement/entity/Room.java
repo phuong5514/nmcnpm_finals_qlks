@@ -35,4 +35,10 @@ public class Room {
     @JoinColumn(name = "RoomTypeName", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private RoomType roomType;
+
+    @Column(name = "MaxGuestCount", nullable = false)
+    private int maxGuestCount;
+
+    @Column(name = "OverGuestRate", precision = 2, nullable = false)
+    private double overGuestRate;
 }
