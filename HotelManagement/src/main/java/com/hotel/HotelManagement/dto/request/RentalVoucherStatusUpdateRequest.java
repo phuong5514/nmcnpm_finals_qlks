@@ -9,13 +9,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Setter
 @Getter
-@NoArgsConstructor
-public class RoomCreationRequest {
-    @NotBlank(message = "room type cannot be blank")
-    private String roomTypeString;
+public class RentalVoucherStatusUpdateRequest {
+    @NotNull(message = "voucher id cannot be null")
+    @Min(value = 0, message = "voucher id must be positive")
+    private int voucherId;
 
-    @Min(value = 1, message = "at least 1 guest can accomidate the room")
-    private Integer maxGuestCount;
+    @NotBlank(message = "status string cannot be blank")
+    private String statusString;
 }

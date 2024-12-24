@@ -7,6 +7,7 @@ import java.util.List;
 
 @Service
 public interface IRentalVoucherService {
+    RentalVoucher getRentalVoucher(int id);
     List<RentalVoucher> getRentalVouchers();
     List<RentalVoucher> findRentalVouchersByStatus(RentalVoucher.Status status);
 

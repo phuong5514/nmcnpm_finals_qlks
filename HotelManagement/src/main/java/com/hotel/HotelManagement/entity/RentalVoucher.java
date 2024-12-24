@@ -23,18 +23,24 @@ public class RentalVoucher {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int voucherId;
 
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Customer.class, optional = false)
-    @JoinColumn(name = "CustomerID", nullable = false)
-    private Customer customer;
+//    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Customer.class, optional = false)
+//    @JoinColumn(name = "CustomerID", nullable = false)
+//    private Customer customer;
 
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Room.class, optional = false)
-    @JoinColumn(name = "RoomID", nullable = false)
-    private Room room;
+//    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Room.class, optional = false)
+//    @JoinColumn(name = "RoomID", nullable = false)
+//    private Room room;
+
+    @Column(name = "CustomerID", nullable = false)
+    private int customerId;
+
+    @Column(name = "RoomID", nullable = false)
+    private int roomId;
 
     @Column(name = "StartDate", nullable = false)
     private Date startDate;
 
-    @Column(name = "Status", nullable = false)
+    @Column(name = "Status", length = 8, nullable = false)
     @Enumerated(EnumType.STRING)
     private Status status = Status.PENDING;
 

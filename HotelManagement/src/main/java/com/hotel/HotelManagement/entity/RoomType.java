@@ -22,4 +22,7 @@ public class RoomType {
 
     @Column(name = "BasePrice", nullable = false)
     private int basePrice;
+
+    @Column(name = "OverGuestRate", precision = 2, nullable = false)
+    private double overGuestRate;
 }

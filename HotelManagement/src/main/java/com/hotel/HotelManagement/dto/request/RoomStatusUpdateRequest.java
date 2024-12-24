@@ -5,17 +5,16 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @AllArgsConstructor
 @Setter
 @Getter
-@NoArgsConstructor
-public class RoomCreationRequest {
-    @NotBlank(message = "room type cannot be blank")
-    private String roomTypeString;
+public class RoomStatusUpdateRequest {
+    @NotNull( message = "room id cannot be null")
+    @Min(value = 0, message = "room id must be a positive number")
+    private int roomId;
 
-    @Min(value = 1, message = "at least 1 guest can accomidate the room")
-    private Integer maxGuestCount;
+    @NotBlank(message = "room status string cannot be blank")
+    private String roomStatusString;
 }

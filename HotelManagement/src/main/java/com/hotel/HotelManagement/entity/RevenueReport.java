@@ -21,9 +21,8 @@ public class RevenueReport {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int revenueReportID;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false, targetEntity = RoomType.class)
-    @JoinColumn(name = "RoomTypeName", nullable = false)
-    private RoomType roomType;
+    @Column(name = "RoomTypeName", nullable = false)
+    private String roomTypeName;
 
     @Column(name = "Month", nullable = false)
     private Date month;

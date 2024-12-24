@@ -13,6 +13,11 @@ public class RentalVoucherService implements IRentalVoucherService {
     private RentalVoucherRepository rentalVoucherRepository;
 
     @Override
+    public RentalVoucher getRentalVoucher(int id) {
+        return rentalVoucherRepository.findById(id).orElse(null);
+    }
+
+    @Override
     public List<RentalVoucher> getRentalVouchers() {
         return rentalVoucherRepository.findAll();
     }

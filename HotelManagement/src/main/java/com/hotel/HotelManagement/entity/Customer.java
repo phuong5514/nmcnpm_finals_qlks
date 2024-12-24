@@ -17,8 +17,6 @@ import org.hibernate.annotations.OnDeleteAction;
 @Entity
 @Table(name = "`Customer`")
 public class Customer {
-//    @Column(name = "RoleName", length = 20, nullable = false)
-//    private String roleName;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CustomerId", nullable = false)
@@ -30,14 +28,9 @@ public class Customer {
     @Column(name = "CustomerName", length = 45, nullable = false)
     private String customerName;
 
-    @Column(name = "Address", nullable = true)
+    @Column(name = "Address", length = 45, nullable = true)
     private String address;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false, targetEntity = CustomerType.class)
-    @JoinColumn(name = "CustomerTypeID", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private CustomerType cutomerType;
-
-
-
+    @Column(name = "CustomerTypeID", length = 3, nullable = false)
+    private String customerTypeID;
 }

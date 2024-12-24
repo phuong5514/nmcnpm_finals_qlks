@@ -21,10 +21,8 @@ public class Invoice {
     @Column(name = "InvoiceId")
     private int InvoiceId;
 
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Customer.class, optional = false)
-    @JoinColumn(name = "CustomerID", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private Customer Customer;
+    @Column(name = "CustomerId", nullable = false)
+    private int customerId;
 
     @Column(name = "IssuedDate", nullable = false)
     private Date IssuedDate;

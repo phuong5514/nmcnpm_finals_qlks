@@ -1,11 +1,9 @@
 package com.hotel.HotelManagement.controller.User;
 
-import com.hotel.HotelManagement.dto.request.CustomerCreationOrUpdateRequest;
-import com.hotel.HotelManagement.dto.request.InvoiceCreationOrUpdateRequest;
-import com.hotel.HotelManagement.dto.request.RentalVoucherCreationOrUpdateRequest;
-import com.hotel.HotelManagement.dto.request.RentalVoucherDeletionRequest;
+import com.hotel.HotelManagement.dto.request.*;
 import com.hotel.HotelManagement.entity.*;
 import com.hotel.HotelManagement.service.*;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -75,57 +73,78 @@ public class UserEmployeeController {
         return "roomList";
     }
 
+    @PostMapping("/rooms/update-status")
+    public Room updateRoomStatus(@Valid @RequestBody RoomStatusUpdateRequest roomStatusUpdateRequest) {
+        Room room = roomService.getRoom(roomStatusUpdateRequest.getRoomId());
+        if (room != null) {
+            return null;
+        }
 
-    @PostMapping("/rental-vouchers/save")
-    public RentalVoucher createOrUpdateRentalVoucher(@RequestBody RentalVoucherCreationOrUpdateRequest rentalVoucherDTO) {
+        Room.Status status = Room.Status.valueOf(roomStatusUpdateRequest.getRoomStatusString());
+        if (status != null) {
+            room.setStatus(status);
+        } else {
+            return null;
+        }
+        return room;
+    }
+
+    @PostMapping("/rental-voucher/create")
+    public RentalVoucher createRentalVoucher(@Valid @RequestBody RentalVoucherCreationRequest rentalVoucherCreationRequest) {
         RentalVoucher rentalVoucher = new RentalVoucher();
-        int rentalVoucherId = rentalVoucherDTO.getVoucherId();
-        if (rentalVoucherId > 0) {
-            rentalVoucher.setVoucherId(rentalVoucherId);
-        }
-
-        Room room = roomService.getRoomById(rentalVoucherDTO.getRoomId());
-        if (room == null) {
-            return null;
-        }
-        rentalVoucher.setRoom(room);
-
-        Customer customer = customerService.findCustomerById(rentalVoucherDTO.getCustomerId());
-        if (customer == null) {
-            return null;
-        }
-        rentalVoucher.setCustomer(customer);
-
-        rentalVoucher.setStartDate(rentalVoucherDTO.getStartDate());
-
-        RentalVoucher.Status status = RentalVoucher.Status.valueOf(rentalVoucherDTO.getStatusString());
-        rentalVoucher.setStatus(status);
+        rentalVoucher.setRoomId(rentalVoucherCreationRequest.getRoomId());
+        rentalVoucher.setCustomerId(rentalVoucherCreationRequest.getCustomerId());
+        rentalVoucher.setStartDate(rentalVoucherCreationRequest.getStartDate());
 
         return rentalVoucherService.save(rentalVoucher);
     }
 
+    @PostMapping("/rental-vouchers/update")
+    public RentalVoucher updateRentalVoucher(@Valid @RequestBody RentalVoucherModificationRequest rentalVoucherDTO) {
+        RentalVoucher rentalVoucher = rentalVoucherService.getRentalVoucher(rentalVoucherDTO.getVoucherId());
+
+        if (rentalVoucher == null) {
+            return null;
+        }
+
+        rentalVoucher.setStartDate(rentalVoucherDTO.getStartDate());
+        rentalVoucher.setCustomerId(rentalVoucherDTO.getCustomerId());
+        rentalVoucher.setRoomId(rentalVoucherDTO.getRoomId());
+
+        return rentalVoucherService.save(rentalVoucher);
+    }
+
+    @PostMapping("/rental-vouchers/update-status")
+    public RentalVoucher updateRentalVoucherStatus(@Valid @RequestBody RentalVoucherStatusUpdateRequest rentalVoucherDTO) {
+        RentalVoucher rentalVoucher = rentalVoucherService.getRentalVoucher(rentalVoucherDTO.getVoucherId());
+        if (rentalVoucher == null) {
+            return null;
+        }
+
+        RentalVoucher.Status status = RentalVoucher.Status.valueOf(rentalVoucherDTO.getStatusString());
+        if (status == null) {
+            return null;
+        }
+
+        rentalVoucher.setStatus(status);
+        return rentalVoucherService.save(rentalVoucher);
+    }
+
     @PostMapping("/rental-vouchers/delete")
-    public void deleteRentalVoucher(@RequestBody RentalVoucherDeletionRequest rentalVoucherDTO) {
+    public void deleteRentalVoucher(@Valid @RequestBody RentalVoucherDeletionRequest rentalVoucherDTO) {
         rentalVoucherService.delete(rentalVoucherDTO.getRentalVoucherId());
     }
 
-    @PostMapping("/invoices/save")
-    public Invoice createOrUpdateInvoice(@RequestBody InvoiceCreationOrUpdateRequest invoiceDTO) {
+
+    @PostMapping("/invoices/create")
+    public Invoice createInvoice(@Valid @RequestBody InvoiceCreationRequest invoiceCreationRequest) {
         Invoice invoice = new Invoice();
-        if (invoiceDTO.getInvoiceId() > 0) {
-            invoice.setInvoiceId(invoiceDTO.getInvoiceId());
-        }
-
-        Customer customer = customerService.findCustomerById(invoiceDTO.getCustomerId());
-        if (customer == null) {
-            return null;
-        }
-        invoice.setCustomer(customer);
-
-        invoice.setIssuedDate(invoiceDTO.getIssuedDate());
-        invoice.setTotalAmount(invoiceDTO.getTotalAmount());
+        invoice.setCustomerId(invoiceCreationRequest.getCustomerId());
+        invoice.setIssuedDate(invoiceCreationRequest.getIssuedDate());
+        invoice.setTotalAmount(invoiceCreationRequest.getTotalAmount());
 
         return invoiceService.save(invoice);
+
     }
 
     @GetMapping("/customers")
@@ -154,31 +173,54 @@ public class UserEmployeeController {
         return "customerList";
     }
 
-    @PostMapping("/customers/save")
-    public Customer createOrUpdateCustomer(@RequestBody CustomerCreationOrUpdateRequest customerDTO) {
-        Customer customer = new Customer();
-
-        int customerId = customerDTO.getCustomerId();
-        if (customerId > 0) {
-            customer.setCustomerId(customerId);
-        }
-
-        customer.setCustomerName(customerDTO.getCustomerName());
-
-        Customer customerByIdCard = customerService.findCustomerByIdCard(customerDTO.getIdentityCard());
-        if (customerByIdCard == null || customerByIdCard.getCustomerId() == customerId) {
-            customer.setIdentityCard(customerDTO.getIdentityCard());
-        } else {
-            return null;
-        }
-
-        customer.setAddress(customerDTO.getAddress());
-
-        CustomerType type = customerTypeService.findCustomerTypeById(customerDTO.getCutomerTypeString());
+    @PostMapping("/customers/create")
+    public Customer createCustomer(@Valid @RequestBody CustomerCreationRequest customerCreationRequest) {
+        String typeId = customerCreationRequest.getCutomerTypeString();
+        CustomerType type = customerTypeService.findCustomerTypeById(typeId);
         if (type == null) {
             return null;
         }
-        customer.setCutomerType(type);
+
+        String identityCard = customerCreationRequest.getIdentityCard();
+        Customer checkedCustomer = customerService.findCustomerByIdCard(identityCard.trim());
+        if (checkedCustomer != null) {
+            return null;
+        }
+
+        Customer customer = new Customer();
+        customer.setCustomerName(customerCreationRequest.getCustomerName());
+        customer.setAddress(customerCreationRequest.getAddress());
+        customer.setIdentityCard(customerCreationRequest.getIdentityCard());
+        customer.setCustomerTypeID(typeId);
+        return customerService.save(customer);
+    }
+
+
+    @PostMapping("/customers/save")
+    public Customer updateCustomer(@Valid @RequestBody CustomerModificationRequest customerDTO) {
+        Customer customer = customerService.findCustomerById(customerDTO.getCustomerId());
+
+        if (customer == null) {
+            return null;
+        }
+
+        String typeId = customerDTO.getCutomerTypeString();
+        CustomerType type = customerTypeService.findCustomerTypeById(typeId);
+        if (type == null) {
+            return null;
+        }
+
+        // khong cho 2 khach hang co cung giay cmnd
+        String identityCard = customerDTO.getIdentityCard();
+        Customer checkedCustomer = customerService.findCustomerByIdCard(identityCard.trim());
+        if (checkedCustomer.getCustomerId() != customer.getCustomerId()) {
+            return null;
+        }
+
+        customer.setCustomerTypeID(typeId);
+        customer.setCustomerName(customerDTO.getCustomerName());
+        customer.setAddress(customerDTO.getAddress());
+        customer.setIdentityCard(customerDTO.getIdentityCard());
 
         return customerService.save(customer);
     }

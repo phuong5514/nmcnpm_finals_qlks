@@ -23,22 +23,19 @@ public class Room {
 
     @Column(name = "Status", nullable = false)
     @Enumerated(EnumType.STRING)
-//    @GeneratedValue()
     private Status status = Status.VACANT;
 
     public enum Status {
         VACANT,
-        OCCUPIED
+        OCCUPIED,
+        BOOKED
     }
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false, targetEntity = RoomType.class)
-    @JoinColumn(name = "RoomTypeName", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private RoomType roomType;
+    @Column(name = "RoomTypeName", nullable = false)
+    private String roomTypeName;
 
     @Column(name = "MaxGuestCount", nullable = false)
     private int maxGuestCount;
 
-    @Column(name = "OverGuestRate", precision = 2, nullable = false)
-    private double overGuestRate;
+
 }

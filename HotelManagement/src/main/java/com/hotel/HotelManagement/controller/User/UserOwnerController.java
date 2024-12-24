@@ -3,6 +3,7 @@ package com.hotel.HotelManagement.controller.User;
 import com.hotel.HotelManagement.dto.request.*;
 import com.hotel.HotelManagement.entity.*;
 import com.hotel.HotelManagement.service.*;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,26 +47,41 @@ public class UserOwnerController {
         return "roomTypeList";
     }
 
-    @PostMapping("/room-types/save")
-    public RoomType createOrUpdateRoomType(@RequestBody RoomTypeCreationOrUpdateRequest roomTypeDTO) {
+    @PostMapping("/room-types/create")
+    public RoomType addRoomType(@Valid @RequestBody RoomTypeCreationRequest roomTypeDTO) {
         RoomType roomType = new RoomType();
-        if (roomType.getRoomTypeName() != null) {
-            roomType.setRoomTypeName(roomType.getRoomTypeName());
-        }
+        roomType.setRoomTypeName(roomTypeDTO.getRoomTypeName());
         roomType.setBasePrice(roomTypeDTO.getBasePrice());
+
+        Double overGuestRate = roomTypeDTO.getOverGuestRate();
+        if (overGuestRate != null) {
+            roomType.setOverGuestRate(overGuestRate);
+        } else {
+            Regulation regulation = regulationService.getRegulation();
+            roomType.setOverGuestRate(regulation.getDefaultOverGuestRate());
+        }
+        return roomTypeService.save(roomType);
+    }
+
+    @PostMapping("/room-types/update")
+    public RoomType updateRoomType(@Valid @RequestBody RoomTypeModificationRequest roomTypeDTO) {
+        RoomType roomType = roomTypeService.findRoomTypeByName(roomTypeDTO.getRoomTypeName());
+
+        if (roomType == null) {
+            throw new IllegalArgumentException("Room type not found");
+        }
+
+        roomType.setBasePrice(roomTypeDTO.getBasePrice());
+        roomType.setOverGuestRate(roomTypeDTO.getOverGuestRate());
 
         return roomTypeService.save(roomType);
     }
 
 
     @PostMapping("/room-types/delete")
-    public void deleteRoomType(@RequestBody RoomTypeDeletionRequest roomTypeDTO) {
+    public void deleteRoomType(@Valid @RequestBody RoomTypeDeletionRequest roomTypeDTO) {
         RoomType roomType = roomTypeService.findRoomTypeByName(roomTypeDTO.getRoomTypeName());
-        if (roomType != null) {
-            roomTypeService.delete(roomType);
-        } else {
-            throw new IllegalArgumentException("room type not found");
-        }
+        roomTypeService.delete(roomType);
     }
 
     @GetMapping("rooms")
@@ -97,30 +113,39 @@ public class UserOwnerController {
         return "roomList";
     }
 
-    @PostMapping("/rooms/add")
-    public Room addRoom(@RequestBody RoomCreationRequest roomDTO) {
+    @PostMapping("/rooms/create")
+    public Room addRoom(@Valid @RequestBody RoomCreationRequest roomDTO) {
         Room room = new Room();
-        RoomType roomType = roomTypeService.findRoomTypeByName(roomDTO.getRoomTypeString());
-        room.setRoomType(roomType);
 
-        Regulation regulation = regulationService.getRegulation();
-        room.setMaxGuestCount(regulation.getDefaultMaxGuestCount());
-        room.setOverGuestRate(regulation.getDefaultOverGuestRate());
+        room.setRoomTypeName(roomDTO.getRoomTypeString());
+
+        Integer maxGuestCount = roomDTO.getMaxGuestCount();
+        if (maxGuestCount != null) {
+            room.setMaxGuestCount(maxGuestCount);
+        } else {
+            Regulation regulation = regulationService.getRegulation();
+            room.setMaxGuestCount(regulation.getDefaultMaxGuestCount());
+        }
 
         return roomService.save(room);
     }
 
     @PostMapping("/rooms/update")
-    public Room updateRoom(@RequestBody RoomUpdateRequest roomDTO) {
-        RoomType roomType = roomTypeService.findRoomTypeByName(roomDTO.getRoomTypeString());
-        Room.Status status = Room.Status.valueOf(roomDTO.getRoomStatusString());
-        Room room = new Room(roomDTO.getRoomId(), status, roomType, roomDTO.getMaxGuestCount(), roomDTO.getOverGuestRate());
+    public Room updateRoom(@Valid @RequestBody RoomModificationRequest roomDTO) {
+        Room room = roomService.getRoomById(roomDTO.getRoomId());
+        if (room == null) {
+            throw new IllegalArgumentException("Room not found");
+        }
+
+        room.setRoomTypeName(roomDTO.getRoomTypeString());
+        room.setMaxGuestCount(roomDTO.getMaxGuestCount());
+        room.setRoomTypeName(roomDTO.getRoomTypeString());
 
         return roomService.save(room);
     }
 
     @PostMapping("/rooms/delete")
-    public void deleteRoom(@RequestBody RoomDeletionRequest roomDTO) {
+    public void deleteRoom( @Valid @RequestBody RoomDeletionRequest roomDTO) {
         roomService.getRoomById(roomDTO.getRoomId());
     }
 
@@ -132,7 +157,7 @@ public class UserOwnerController {
     }
 
     @PostMapping("/regulation/save")
-    public Regulation updateRegulation(@RequestBody RegulationUpdateRequest regulationDTO) {
+    public Regulation updateRegulation(@Valid @RequestBody RegulationModificationRequest regulationDTO) {
         Regulation regulation = regulationService.getRegulation();
 
         int maxGuestCount = regulationDTO.getDefaultMaxGuestCount();
@@ -153,18 +178,27 @@ public class UserOwnerController {
         return revenueReportService.getRevenueReportByMonth(date);
     }
 
-    @PostMapping("/revenue-reports/save")
-    public RevenueReport saveRevenueReport(@RequestBody RevenueReportCreationOrUpdateRequest revenueReportDTO) {
+    @PostMapping("/revenue-reports/create")
+    public RevenueReport addRevenueReport(@Valid @RequestBody RevenueReportCreationRequest revenueReportDTO) {
         RevenueReport revenueReport = new RevenueReport();
+        revenueReport.setRoomTypeName(revenueReportDTO.getRoomTypeName());
+        revenueReport.setMonth(revenueReportDTO.getMonth());
+        revenueReport.setRevenue(revenueReportDTO.getRevenue());
+        revenueReport.setPercentage(revenueReportDTO.getPercentage());
+        return revenueReportService.save(revenueReport);
+    }
 
-        int revenueReportId = revenueReportDTO.getRevenueReportID();
-        if (revenueReportId > 0) {
-            revenueReport.setRevenueReportID(revenueReportId);
+    @PostMapping("/revenue-reports/update")
+    public RevenueReport saveRevenueReport(@Valid @RequestBody RevenueReportModificationRequest revenueReportDTO) {
+        RevenueReport revenueReport = revenueReportService.getRevenueReportById(revenueReportDTO.getRevenueReportID());
+
+        if (revenueReport == null) {
+            throw new IllegalArgumentException("RevenueReport not found");
         }
 
         revenueReport.setRevenue(revenueReportDTO.getRevenue());
         revenueReport.setMonth(revenueReportDTO.getMonth());
-        revenueReport.setRoomType(revenueReportDTO.getRoomType());
+        revenueReport.setRoomTypeName(revenueReportDTO.getRoomTypeName());
         revenueReport.setPercentage(revenueReportDTO.getPercentage());
 
         return revenueReportService.save(revenueReport);
@@ -184,20 +218,29 @@ public class UserOwnerController {
         return "customerTypeList";
     }
 
-    @PostMapping("/customer-types/save")
-    public CustomerType createOrUpdateCustomerType(@RequestBody CustomerTypeCreationOrUpdateRequest customerTypeDTO) {
+    @PostMapping("/customer-types/create")
+    public CustomerType createCustomerType(@Valid @RequestBody CustomerTypeCreationRequest customerTypeCreationRequest) {
         CustomerType customerType = new CustomerType();
-        String customerTypeID = customerTypeDTO.getCustomerTypeID();
-        if (customerTypeID != null) {
-            customerType.setCustomerTypeID(customerTypeID);
+        customerType.setFeeModifier(customerTypeCreationRequest.getFeeModifier());
+        customerType.setCustomerTypeName(customerTypeCreationRequest.getCustomerTypeName());
+        return customerTypeService.save(customerType);
+    }
+
+    @PostMapping("/customer-types/update")
+    public CustomerType updateCustomerType(@Valid @RequestBody CustomerTypeModificationRequest customerTypeDTO) {
+        CustomerType customerType = customerTypeService.findCustomerTypeById(customerTypeDTO.getCustomerTypeID());
+
+        if (customerType == null) {
+            throw new IllegalArgumentException("CustomerType not found");
         }
+
         customerType.setCustomerTypeName(customerTypeDTO.getCustomerTypeName());
         customerType.setFeeModifier(customerTypeDTO.getFeeModifier());
         return customerTypeService.save(customerType);
     }
 
     @PostMapping("/customer-types/delete")
-    public void deleteCustomerType(@RequestBody CustomerTypeDeletionRequest customerTypeDTO) {
+    public void deleteCustomerType(@Valid @RequestBody CustomerTypeDeletionRequest customerTypeDTO) {
         customerTypeService.delete(customerTypeDTO.getCustomerTypeID());
     }
 }

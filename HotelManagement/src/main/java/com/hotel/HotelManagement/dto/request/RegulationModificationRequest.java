@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegulationUpdateRequest {
+public class RegulationModificationRequest {
     private int defaultMaxGuestCount;
     private double defaultOverGuestRate;
 
